@@ -1,5 +1,9 @@
 package com.company;
 
-public class Apple extends Fruit{
+/**
+ * Создать класс Apple родителем которого является Fruit
+ */
+
+public class Apple extends Fruit {
 
 }
