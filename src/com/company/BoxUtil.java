@@ -1,46 +1,32 @@
 package com.company;
 
 public class BoxUtil {
-    /**
-     * скопировать содержимое из одной коробки в другую.
-     * Box(dest), в которую будем копировать, может быть типизирована
-     * любым родителем объекта, содержащимся в Box(src)
-     */
 
     public static <T> void copyFromBoxToBox(final Box<T> src, final Box<? super T> dest) {
         T obj = src.get();
         dest.put(obj);
+        System.out.println(dest.get());
     }
 
-    /**
-     * скопировать содержимое из Box(src), которая может быть типизирована
-     * только классом Fruit и его наследниками,
-     * при условии, что содержащийся фрукт свежий (fresh == true).
-     * Box(dest), в которую будем копировать, может быть типизирована
-     * любым родителем объекта, содержащимся в Box(src)
-     */
-
-    public static <T extends Fruit> void copyFreshFruitFromBoxToBox(final Box<T extends Fruit> src, final Box<T super Fruit> dest) {
+    public static <T extends Fruit> void copyFreshFruitFromBoxToBox(final Box<T> src, final Box<? super Fruit> dest) {
         T obj = src.get();
         if (obj != null && obj.isFresh()) {
             dest.put(obj);
+            System.out.println(dest.get() + " в коробке!");
+        } else {
+            if (obj != null) {
+                System.out.println("Нельзя положить в коробку несвежий фрукт..");
+            } else {
+                System.out.println("Коробка пуста! Перекладывать нечего..");
+            }
         }
     }
 
-    /**
-     * вывести в консоль (toString()) объект второй коробки
-     */
-
-    public static /*...*/ void printElementFromTwoBoxes(final Box</*...*/> box) {
-        /*...*/
+    public static <T> void printElementFromTwoBoxes(final Box<Box<T>> box) {
+        T obj = box.get().get();
+        System.out.println(obj);
     }
 
-    /**
-     * вывести в консоль (toString()) объект последней коробки
-     * box Box, которая содержит в себе любое кол-во вложенных Box,
-     * в последней из которых может быть любой объект.
-     */
-    public static /*...*/ void printElementFromBoxes(final Box</*...*/> box) {
-        /*...*/
+    public static <T> void printElementFromBoxes(final Box<T> box) {
     }
 }
