@@ -1,16 +1,11 @@
 package com.company;
 
 public class Fruit {
-    private String name = null;
-    private boolean fresh;
+    private final String name;
+    private boolean fresh = true;
 
-    public Fruit(final String name, final boolean fresh) {
+    public Fruit(final String name) {
         this.name = name;
-        this.fresh = fresh;
-    }
-
-    public Fruit(final boolean fresh) {
-        this.fresh = fresh;
     }
 
     @Override

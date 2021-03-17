@@ -12,13 +12,11 @@ public class BoxUtil {
         T obj = src.get();
         if (obj != null && obj.isFresh()) {
             dest.put(obj);
-            System.out.println(dest.get() + " в коробке!");
+            System.out.println(dest.get().toString() + " в коробке!");
+        } else if (obj != null) {
+            System.out.println("Нельзя положить в коробку " + obj.toString());
         } else {
-            if (obj != null) {
-                System.out.println("Нельзя положить в коробку несвежий фрукт..");
-            } else {
-                System.out.println("Коробка пуста! Перекладывать нечего..");
-            }
+            System.out.println("Коробка пуста! Перекладывать нечего..");
         }
     }
 
@@ -28,5 +26,11 @@ public class BoxUtil {
     }
 
     public static <T> void printElementFromBoxes(final Box<T> box) {
+        T obj = box.get();
+        if (obj instanceof Box) {
+            printElementFromBoxes((Box<?>) obj);
+        } else {
+            System.out.println(obj);
+        }
     }
 }
